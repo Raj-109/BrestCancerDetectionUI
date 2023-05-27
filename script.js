@@ -19,7 +19,8 @@ const formData = new FormData();
   };
 
   async function postData() {
-    try {
+    try 
+    {
       if (fileInput.value) {
         submitButton.disabled = false;
       }
@@ -58,18 +59,15 @@ const formData = new FormData();
         textDisplay.appendChild(invasiveNode);
 
         // Example: Update image display with the API response
-        var imgNode = document.createElement("img");
-        imgNode.src = data.imageUrl;
-        imgNode.style.maxWidth = "100%";
-        imgNode.style.height = "auto";
-        imageDisplay.innerHTML = "";
-        imageDisplay.appendChild(imgNode);
-      } else {
-        console.error('Error:', response.status);
-        textDisplay.textContent = 'Error: Failed to fetch data from the API';
+        // var imgNode = document.createElement("img");
+        // imgNode.src = data.imageUrl;
+        // imgNode.style.maxWidth = "100%";
+        // imgNode.style.height = "auto";
+        // imageDisplay.innerHTML = "";
+        // imageDisplay.appendChild(imgNode);
       }
-
-    } catch (error) {
+    } 
+    catch (error) {
       console.error('Error:', error);
       textDisplay.textContent = 'Error: Failed to fetch data from the API';
     } finally {
