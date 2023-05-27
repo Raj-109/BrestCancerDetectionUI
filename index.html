@@ -14,49 +14,51 @@
 
 <body>
 
-
+  <div class="all">
+   
   <header>
     <h1 class="heading">Breast Cancer Classification Using CNN</h1>
   </header>
+  <div class="main">
 
-  <div class="wrapper">
-    <div class="title">
-      Personal Information
-    </div>
-    <div class="form">
-      <div class="inputfield">
-        <label>First Name</label>
-        <input type="text" class="input">
+    <div class="wrapper">
+      <div class="title">
+        Personal Information
       </div>
-      <div class="inputfield">
-        <label>Last Name</label>
-        <input type="text" class="input">
-      </div>
-      <div class="inputfield">
-        <label>Age</label>
-        <input type="number" class="input">
-      </div>
-      <div class="inputfield">
-        <label>Gender</label>
-        <div class="custom_select">
-          <select>
-            <option value="">Select</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Others">Others</option>
-          </select>
+      <div class="form">
+        <div class="inputfield">
+          <label>First Name</label>
+          <input type="text" class="input">
         </div>
-      </div>
-      <div class="inputfield">
-        <label>Occupation</label>
-        <input type="text" class="input">
-      </div>
-
-      <div class="inputfield">
-        <label>Phone Number</label>
-        <input type="text" class="input">
-      </div>
-      <div class="inputfield">
+        <div class="inputfield">
+          <label>Last Name</label>
+          <input type="text" class="input">
+        </div>
+        <div class="inputfield">
+          <label>Age</label>
+          <input type="number" class="input">
+        </div>
+        <div class="inputfield">
+          <label>Gender</label>
+          <div class="custom_select">
+            <select>
+              <option value="">Select</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Others">Others</option>
+            </select>
+          </div>
+        </div>
+        <div class="inputfield">
+          <label>Occupation</label>
+          <input type="text" class="input">
+        </div>
+        
+        <div class="inputfield">
+          <label>Phone Number</label>
+          <input type="text" class="input">
+        </div>
+        <div class="inputfield">
         <label>Address</label>
         <textarea class="textarea"></textarea>
       </div>
@@ -64,12 +66,12 @@
         <label>Pin Code</label>
         <input type="text" class="input">
       </div>
-
+      
     </div>
   </div>
-
-
-
+  
+  
+  
 
 
   <div class="wrapper">
@@ -77,34 +79,25 @@
       <div class="title">
         Upload Image For Cancer detection
       </div>
-
       <form id="myForm" action="/" method="post" class="upload" enctype="multipart/form-data">
-
-
         <label> Upload Image below:</label>
         <input type="file" id="my-file" name="imagefile" /> <br /><br />
-
         <div class="form">
-
-          <div class="inputfield">
+           <div class="inputfield">
             <input type="submit" value="Submit to View Results" class="btn" id="submitButton">
           </div>
-      </form>
-
-      <div id="textDisplay"></div>
-      <!-- <div id="imageDisplay"></div> -->
+        </form>
+        
+        <div id="textDisplay"></div>
+        <!-- <div id="imageDisplay"></div> -->
+      </div>
     </div>
+    
   </div>
-
-
   </div>
-
-
-
+  
   <script src="script.js"></script>
-
-
-
+  
 </body>
 
 </html>

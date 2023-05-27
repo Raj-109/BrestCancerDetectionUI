@@ -276,4 +276,8 @@ header h1 {
 }
 
 /* Add additional styles as needed */
-
+.main{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
