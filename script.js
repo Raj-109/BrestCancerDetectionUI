@@ -11,7 +11,9 @@ document.getElementById("myForm").addEventListener("submit", function (event) {
   event.preventDefault(); 
 
   var textDisplay = document.getElementById("textDisplay");
-  var imageDisplay = document.getElementById("imageDisplay");
+  textDisplay.style.backgroundColor="White";
+  textDisplay.style.borderRadius="20px";
+  // var imageDisplay = document.getElementById("imageDisplay");
   var submitButton = document.getElementById("submitButton");
   submitButton.disabled = true;
   const apiUrl = 'http://localhost:5000/predict';
@@ -65,10 +67,26 @@ document.getElementById("myForm").addEventListener("submit", function (event) {
         insituNode.classList.add("result-item");
         normalNode.classList.add("result-item");
         invasiveNode.classList.add("result-item");
-        if(data.Benign>45) alert("You should go to the doctor!!");
-        if(data.InSitu>45) alert("b");
-        if(data.Normal>45) alert("c");
-        if(data.Invasive>45) alert("d");
+
+        var Result=document.getElementById("result");
+        document.getElementById("result").style.display="block";
+        if(data.Invasive>45) {
+        Result.innerHTML="Invasive is prominent";
+        Result.style.backgroundColor="Red";
+        }
+        else if(data.InSitu>45) {
+        Result.innerHTML="Insitu is prominent";
+        Result.style.backgroundColor="Orange";
+        }
+        else if(data.Benign>45) {
+        Result.innerHTML="Benign is prominent";
+        Result.style.backgroundColor="blue";
+        // Result.style.color="Black";
+        }
+        else if(data.Normal>45) {
+        Result.innerHTML="Invasive is prominent";
+        Result.style.backgroundColor="Green";
+        }
         // Append the <p> elements to the text display
         textDisplay.appendChild(benignNode);
         textDisplay.appendChild(insituNode);
@@ -109,7 +127,7 @@ document.getElementById("myForm").addEventListener("submit", function (event) {
           //  console.log(item.value);
           return item.value;
         });
-        var barColors = ["red","blue","green","orange"];
+        var barColors = ["blue","orange","green","red"];
         document.getElementById("myChart").style.display="block";
         new Chart("myChart", {
           type: "bar",
