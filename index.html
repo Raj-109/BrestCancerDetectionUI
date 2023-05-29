@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
+ 
 
   <title>Breast Cancer Classification</title>
 
@@ -22,27 +23,27 @@
   <div class="main">
 
     <div class="wrapper">
-      <div class="title">
+      <div class="title" >
         Personal Information
       </div>
       <div class="form">
         <div class="inputfield">
           <label>First Name</label>
-          <input type="text" class="input">
+          <input type="text" class="input" required>
         </div>
         <div class="inputfield">
           <label>Last Name</label>
-          <input type="text" class="input">
+          <input type="text" class="input" required>
         </div>
         <div class="inputfield">
           <label>Age</label>
-          <input type="number" class="input">
+          <input type="number" class="input" required>
         </div>
         <div class="inputfield">
           <label>Gender</label>
           <div class="custom_select">
-            <select>
-              <option value="">Select</option>
+            <select required>
+              <option value="" >Select</option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
               <option value="Others">Others</option>
@@ -51,20 +52,20 @@
         </div>
         <div class="inputfield">
           <label>Occupation</label>
-          <input type="text" class="input">
+          <input type="text" class="input" required>
         </div>
         
         <div class="inputfield">
           <label>Phone Number</label>
-          <input type="text" class="input">
+          <input type="text" class="input" required>
         </div>
         <div class="inputfield">
         <label>Address</label>
-        <textarea class="textarea"></textarea>
+        <textarea class="textarea" required></textarea>
       </div>
       <div class="inputfield">
         <label>Pin Code</label>
-        <input type="text" class="input">
+        <input type="text" class="input" required>
       </div>
       
     </div>
@@ -80,22 +81,27 @@
         Upload Image For Cancer detection
       </div>
       <form id="myForm" action="/" method="post" class="upload" enctype="multipart/form-data">
-        <label> Upload Image below:</label>
-        <input type="file" id="my-file" name="imagefile" /> <br /><br />
+        <label > Upload Image below:</label>
+        <input type="file" id="my-file" name="imagefile"  /> 
         <div class="form">
            <div class="inputfield">
             <input type="submit" value="Submit to View Results" class="btn" id="submitButton">
           </div>
         </form>
-        
+
         <div id="textDisplay"></div>
+        <div id="imageDisplay"></div>
+        <canvas id="myChart" style="width:100%;max-width:600px;display: none;"></canvas>
+        <!-- <div id="chartContainer" style="width: 300px; height: 200px;">
+          <canvas id="myChart" style="width:100%;max-width:600px;display: none;"></canvas>
+        </div> -->
+        
         <!-- <div id="imageDisplay"></div> -->
       </div>
     </div>
     
   </div>
   </div>
-  
   <script src="script.js"></script>
   
 </body>

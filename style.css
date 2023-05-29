@@ -281,3 +281,13 @@ header h1 {
   align-items: center;
   justify-content: center;
 }
+.result-item {
+  margin-bottom: 8px;
+  font-size: 15px;
+  text-align: center;
+}
+
+#chart {
+  max-width: 200px;
+  margin-top: 10px;
+}

@@ -1,4 +1,11 @@
 var percentageValues = {};
+var chartScript = document.createElement('script');
+chartScript.src = 'https://cdn.jsdelivr.net/npm/chart.js';
+chartScript.onload = function () {
+  // Chart.js script loaded, now you can create the chart
+};
+document.head.appendChild(chartScript);
+
 
 document.getElementById("myForm").addEventListener("submit", function (event) {
   event.preventDefault(); 
@@ -7,10 +14,10 @@ document.getElementById("myForm").addEventListener("submit", function (event) {
   var imageDisplay = document.getElementById("imageDisplay");
   var submitButton = document.getElementById("submitButton");
   submitButton.disabled = true;
-const apiUrl = 'http://localhost:5000/predict';
- const fileInput = document.getElementById("my-file");
+  const apiUrl = 'http://localhost:5000/predict';
+  const fileInput = document.getElementById("my-file");
   const file = fileInput.files[0]; 
-const formData = new FormData();
+  const formData = new FormData();
   formData.append("image", file); 
 
   const requestOptions = {
@@ -36,6 +43,7 @@ const formData = new FormData();
       if (response.ok) {
         const data = await response.json();
         console.log(data);
+        // Create an array to store the data for the bar chart
 
         // Update text display with the API response
         textDisplay.innerHTML = "";
@@ -47,11 +55,20 @@ const formData = new FormData();
         var invasiveNode = document.createElement("p");
 
         // Set the text content for each <p> element
-        benignNode.textContent = "Cancer Percentage of Benign in the Image: " + data.Benign;
-        insituNode.textContent = "Cancer Percentage of Insitu in the Image: " + data.InSitu;
-        normalNode.textContent = "Cancer Percentage of Normal in the Image: " + data.Normal;
-        invasiveNode.textContent = "Cancer Percentage of Invasive in the Image: " + data.Invasive;
+        benignNode.textContent = "Benign Percentage: " + data.Benign + " %";
+        insituNode.textContent = "InSitu Percentage: " + data.InSitu + " %";
+        normalNode.textContent = "Normal Percentage: " + data.Normal + " %";
+        invasiveNode.textContent = "Invasive Percentage: " + data.Invasive + " %";
 
+        // Add CSS classes to the result nodes
+        benignNode.classList.add("result-item");
+        insituNode.classList.add("result-item");
+        normalNode.classList.add("result-item");
+        invasiveNode.classList.add("result-item");
+        if(data.Benign>45) alert("You should go to the doctor!!");
+        if(data.InSitu>45) alert("b");
+        if(data.Normal>45) alert("c");
+        if(data.Invasive>45) alert("d");
         // Append the <p> elements to the text display
         textDisplay.appendChild(benignNode);
         textDisplay.appendChild(insituNode);
@@ -65,11 +82,99 @@ const formData = new FormData();
         // imgNode.style.height = "auto";
         // imageDisplay.innerHTML = "";
         // imageDisplay.appendChild(imgNode);
+        var chartData = [
+          { label: "Benign", value: data.Benign },
+          { label: "Insitu", value: data.InSitu },
+          { label: "Normal", value: data.Normal },
+          { label: "Invasive", value: data.Invasive }
+        ];
+        // console.log(chartData);
+        // var chartCanvas = document.createElement("canvas");
+        // chartCanvas.id = "myChart";
+
+      
+        // var barColors = ["red", "green","blue","orange","brown"];
+   
+
+
+        // Get the chart context
+       // var chartContext = chartCanvas.getContext("2d");
+
+        // Prepare chart data
+        var chartLabels = chartData.map(function (item) {
+          // console.log(item.label)
+        return item.label;
+        });
+        var chartValues = chartData.map(function (item) {
+          //  console.log(item.value);
+          return item.value;
+        });
+        var barColors = ["red","blue","green","orange"];
+        document.getElementById("myChart").style.display="block";
+        new Chart("myChart", {
+          type: "bar",
+          data: {
+            labels: chartLabels,
+            datasets: [{
+              backgroundColor: barColors,
+              data: chartValues
+            }]
+          },
+          options: {
+            // legend: {display: true},
+            title: {
+              display: true,
+              text: ""
+            }
+          }
+        });
+      //   // Create the bar chart
+      //   new Chart(chartContext,
+      //     {
+      //     type: "bar",
+      //     data: {
+      //       labels: "paras",
+      //       datasets: [
+      //         {
+      //           label: "Cancer Percentage",
+      //           data: 10,                 
+      //           backgroundColor: [
+      //             "rgba(255, 99, 132, 0.5)",
+      //             "rgba(54, 162, 235, 0.5)",
+      //             "rgba(75, 192, 192, 0.5)",
+      //             "rgba(255, 205, 86, 0.5)"
+      //           ],
+      //           borderColor: [
+      //             "rgba(255, 99, 132, 1)",
+      //             "rgba(54, 162, 235, 1)",
+      //             "rgba(75, 192, 192, 1)",
+      //             "rgba(255, 205, 86, 1)"
+      //           ],
+      //           borderWidth: 1
+      //         }
+      //       ]
+      //     },
+      //     options: {
+      //       scales: {
+      //         y: {
+      //           beginAtZero: true,
+      //           max: 100
+      //         }
+      //       }
+      //     }
+      //   });
+      // }
+        // // Append the canvas element to the text display
+        //   imageDisplay.appendChild(chartCanvas);
+        //   console.log(textDisplay);
+
       }
+
     } 
     catch (error) {
       console.error('Error:', error);
-      textDisplay.textContent = 'Error: Failed to fetch data from the API';
+      textDisplay.textContent = 'Unable to Detect';
+      textDisplay.style.color="Red";
     } finally {
       // Hide loader and enable submit button
       submitButton.value = 'Submit to View Results';
